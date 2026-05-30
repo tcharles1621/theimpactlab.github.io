@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Impact Lab | Curriculum & Instructional Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --plum: #3D1035;
+    --plum-deep: #2a0b24;
+    --plum-mid: #5a1a50;
+    --plum-light: #7a2570;
+    --gold: #F5A623;
+    --gold-dark: #c4831a;
+    --gold-pale: #fef3dc;
+    --gold-muted: #f9d48a;
+    --white: #ffffff;
+    --off-white: #faf8f5;
+    --text-dark: #1a0e17;
+    --text-body: #3d2438;
+    --text-muted: #7a5570;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--off-white);
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--plum-deep);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(245,166,35,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(245,166,35,0.75);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--plum-deep) !important;
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-dark) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--plum);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,166,35,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 0.95;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--plum-deep);
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-1px); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(245,166,35,0.5);
+    color: var(--gold);
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); background: rgba(245,166,35,0.08); }
+
+  /* Hero card */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: var(--radius);
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(245,166,35,0.12);
+  }
+
+  .cred-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .cred-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(245,166,35,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .cred-text { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .cred-text strong { color: var(--gold); font-weight: 600; display: block; font-size: 13px; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 80px 2rem; }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--plum);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: var(--plum-deep);
+    padding: 60px 2rem;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat-box {
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--off-white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid rgba(61,16,53,0.1);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(61,16,53,0.12); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gold-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1.2rem;
+    color: var(--gold-dark);
+  }
+
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--plum);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .service-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-includes li {
+    font-size: 13px;
+    color: var(--text-body);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .service-includes li::before {
+    content: '→';
+    color: var(--gold-dark);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .service-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--plum);
+    background: var(--gold-pale);
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* ── WHO I SERVE ── */
+  .who { background: var(--white); }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .who-card {
+    border: 1.5px solid rgba(61,16,53,0.1);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .who-card:hover {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .who-icon { font-size: 36px; margin-bottom: 1rem; }
+
+  .who-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--plum);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .who-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── DIGITAL SHOP ── */
+  .shop { background: var(--plum); }
+
+  .shop .section-title { color: var(--gold); }
+  .shop .section-eyebrow { color: rgba(245,166,35,0.6); }
+  .shop .section-sub { color: rgba(255,255,255,0.6); }
+
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.25s;
+  }
+
+  .product-card:hover {
+    background: rgba(245,166,35,0.08);
+    border-color: rgba(245,166,35,0.5);
+    transform: translateY(-2px);
+  }
+
+  .product-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plum);
+    background: var(--gold);
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .product-card p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--gold);
+  }
+
+  .product-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--plum-deep);
+    background: var(--gold);
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .product-btn:hover { background: var(--gold-dark); color: var(--white); }
+
+  .shop-coming {
+    background: rgba(245,166,35,0.06);
+    border: 1px dashed rgba(245,166,35,0.25);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  .shop-coming p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.5rem;
+  }
+
+  .shop-coming strong { color: var(--gold); }
+
+  /* ── PLATFORMS ── */
+  .platforms { background: var(--off-white); }
+
+  .platform-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .platform-pill {
+    background: var(--white);
+    border: 1px solid rgba(61,16,53,0.12);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--plum);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .platform-pill:hover {
+    background: var(--plum);
+    color: var(--gold);
+    border-color: var(--plum);
+  }
+
+  .platform-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--gold);
+    padding: 80px 2rem;
+    text-align: center;
+  }
+
+  .cta-band h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--plum-deep);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .cta-band p {
+    font-size: 17px;
+    color: var(--plum-mid);
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .btn-dark {
+    background: var(--plum);
+    color: var(--gold);
+    padding: 16px 36px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-dark:hover { background: var(--plum-deep); transform: translateY(-2px); }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--plum);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: var(--text-body);
+  }
+
+  .contact-icon {
+    width: 36px; height: 36px;
+    background: var(--gold-pale);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--plum);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 11px 14px;
+    border: 1.5px solid rgba(61,16,53,0.15);
+    border-radius: var(--radius-sm);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: var(--text-body);
+    background: var(--off-white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold-dark);
+    background: var(--white);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--plum-deep);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(245,166,35,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(245,166,35,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">THE IMPACT LAB</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#shop">Digital Shop</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Curriculum that launches students forward</p>
+      <h1>Built by<br><span>educators.</span><br>Designed for<br><span>impact.</span></h1>
+      <p class="hero-sub">Professional curriculum design, data analysis, STAAR prep, and instructional resources — built by an AP and former KIPP instructional coach with 10+ years in the classroom.</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#shop" class="btn-outline">Digital Shop</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-title">Credentials</p>
+      <div class="cred-item">
+        <div class="cred-icon">🏫</div>
+        <div class="cred-text">
+          <strong>Assistant Principal</strong>
+          Austin Achieve Middle School · Title I · Grades 5–8
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🚀</div>
+        <div class="cred-text">
+          <strong>Former KIPP Texas Instructional Coach</strong>
+          Early Literacy · Dean of Multilingual Education · 4 campuses
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🎓</div>
+        <div class="cred-text">
+          <strong>M.Ed. in Administration</strong>
+          10+ years designing curriculum for K-12 learners
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">⚡</div>
+        <div class="cred-text">
+          <strong>Founder, The Impact Lab</strong>
+          Independent educational consulting · Est. 2025
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>Real curriculum.<br>Real results.<br>No fluff.</h2>
+      <p>I'm Tova — an Assistant Principal at a Title I middle school in Austin and a former KIPP instructional coach. I've spent over a decade designing the materials that actually move students forward — not just resources that look good in a folder.</p>
+      <p>I've sat in the AP chair, led data meetings, coached resistant teachers, and built intervention systems from scratch. That lived experience is what separates Impact Lab from every other curriculum seller.</p>
+      <a href="#services" class="btn-primary" style="margin-top:0.5rem; display:inline-block;">See What I Offer</a>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years in K-12 education</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">KIPP campuses coached</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5–12</div>
+        <div class="stat-label">Grade levels served</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Point STAAR gains led</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <p class="section-eyebrow">What I offer</p>
+    <h2 class="section-title">Services</h2>
+    <p class="section-sub">Every deliverable is built from real instructional experience — not a template someone found online.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Differentiated Curriculum Design</h3>
+        <p>Full instructional packages for 45, 60, and 90-minute class periods — humanities and STEM — differentiated for every learner in the room.</p>
+        <ul class="service-includes">
+          <li>Scope & sequence documents</li>
+          <li>Lesson plans with I Do / We Do / You Do</li>
+          <li>Student-facing slide decks</li>
+          <li>Exit tickets and guided notes</li>
+          <li>Gen Ed, IEP, and GT versions of all student work</li>
+        </ul>
+        <span class="service-price">Starting at $125</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏡</div>
+        <h3>Micro School, Pod & Homeschool Curriculum</h3>
+        <p>Rigorous, sequenced curriculum built for small groups, mixed ages, and parent-led learning environments.</p>
+        <ul class="service-includes">
+          <li>Custom scope & sequence for your group</li>
+          <li>Daily lesson plans with pacing</li>
+          <li>Multi-age differentiation available</li>
+          <li>Humanities or STEM — your choice</li>
+          <li>Parent/guide facilitation handbook</li>
+        </ul>
+        <span class="service-price">Starting at $150</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Data Analysis & Student Hotlists</h3>
+        <p>Take your STAAR, MAP, or benchmark data and get back a clear report with subgroup breakdowns and a prioritized list of students for small groups and tutoring.</p>
+        <ul class="service-includes">
+          <li>STAAR, MAP Growth, or benchmark analysis</li>
+          <li>Subgroup gap analysis (ELL, SPED, GT)</li>
+          <li>Student hotlist for intervention placement</li>
+          <li>Visual dashboard for leadership teams</li>
+          <li>Teacher-facing one-pager summary</li>
+        </ul>
+        <span class="service-price">Starting at $150</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✏️</div>
+        <h3>STAAR Do Now Warm-Up Sets</h3>
+        <p>Targeted 5-day warm-up sets for grades 5–8 in ELA, Math, Science, and Social Studies — aligned to current TEKS and STAAR question formats.</p>
+        <ul class="service-includes">
+          <li>5-day sets (Mon–Fri) per order</li>
+          <li>STAAR-format questions, current TEKS</li>
+          <li>Print-ready PDF + editable Google Slides</li>
+          <li>Answer key with rationale included</li>
+          <li>Grades 5, 6, 7, or 8 — your choice</li>
+        </ul>
+        <span class="service-price">Starting at $60</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✉️</div>
+        <h3>Family Communication Letters</h3>
+        <p>Intervention notices, tutoring recommendations, STAAR updates, and progress letters — written to build the school-family partnership, not just check compliance.</p>
+        <ul class="service-includes">
+          <li>Intervention and tutoring recommendation letters</li>
+          <li>STAAR testing updates and parent guides</li>
+          <li>Progress update letters</li>
+          <li>Positive recognition letters</li>
+          <li>Spanish translation available</li>
+        </ul>
+        <span class="service-price">Starting at $45</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3>Instructional Coaching & Consulting</h3>
+        <p>For school leaders, charter networks, and ed-tech companies that need an experienced practitioner to build or review instructional systems.</p>
+        <ul class="service-includes">
+          <li>Coaching cycle and PD design</li>
+          <li>Observation framework development</li>
+          <li>Intervention system design</li>
+          <li>Data cycle facilitation</li>
+          <li>Monthly retainer available</li>
+        </ul>
+        <span class="service-price">Starting at $150/hr</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHO I SERVE -->
+<section class="who">
+  <div class="section-inner">
+    <p class="section-eyebrow">Who I work with</p>
+    <h2 class="section-title">Built for educators everywhere</h2>
+    <p class="section-sub">Whether you're running a campus of 500 or a homeschool pod of 5, Impact Lab has something that works for you.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">🏫</div>
+        <h3>K-12 Schools</h3>
+        <p>Title I campuses, charter schools, and traditional public schools needing high-quality curriculum and data support fast.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🚀</div>
+        <h3>Micro Schools</h3>
+        <p>Small independent schools needing structured, teacher-ready curriculum without a full curriculum department.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">👨‍👩‍👧</div>
+        <h3>Homeschool Families</h3>
+        <p>Parents who want rigorous, sequenced instruction that teaches their child the way a real school does.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🌱</div>
+        <h3>Learning Pods</h3>
+        <p>Small co-ops and pod groups needing shared curriculum that works for mixed ages with a part-time guide.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">💻</div>
+        <h3>Ed-Tech Companies</h3>
+        <p>Curriculum publishers and ed-tech platforms that need a practitioner to build or review content for accuracy and usability.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🎓</div>
+        <h3>Instructional Coaches</h3>
+        <p>Coaches and APs building their own resource libraries or seeking a thought partner for complex teacher situations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL SHOP -->
+<section class="shop" id="shop">
+  <div class="section-inner">
+    <p class="section-eyebrow">Ready to download</p>
+    <h2 class="section-title">Digital Shop</h2>
+    <p class="section-sub">Grab-and-go resources built from real classroom experience. Print, display, and teach — no prep required.</p>
+
+    <div class="shop-grid">
+
+      <div class="product-card">
+        <span class="product-tag">STAAR Prep</span>
+        <h4>8th Grade ELA Do Now Bundle — 5 Weeks</h4>
+        <p>25 days of STAAR-aligned warm-ups covering reading comprehension, author's craft, and writing. Print-ready PDF + editable slides.</p>
+        <div class="product-footer">
+          <span class="product-price">$18</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-tag">STAAR Prep</span>
+        <h4>7th Grade Math Do Now Bundle — 5 Weeks</h4>
+        <p>25 days of spiraled math warm-ups aligned to 7th grade TEKS and STAAR format. Answer key with rationale included.</p>
+        <div class="product-footer">
+          <span class="product-price">$18</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-tag">Intervention</span>
+        <h4>Student Hotlist & Small Group Tracker Template</h4>
+        <p>Editable Google Sheets template for organizing intervention data, small group rosters, and progress monitoring by subgroup.</p>
+        <div class="product-footer">
+          <span class="product-price">$12</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-tag">Family Communication</span>
+        <h4>School Communication Letter Pack — 8 Templates</h4>
+        <p>Editable letters for intervention notices, tutoring recommendations, STAAR updates, and positive recognition. Word + Google Docs.</p>
+        <div class="product-footer">
+          <span class="product-price">$22</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-tag">Curriculum</span>
+        <h4>Differentiated Exit Ticket Pack — Middle School ELA</h4>
+        <p>30 exit tickets differentiated for Gen Ed, IEP, and GT. Covers reading, writing, and vocabulary. Print-ready PDF.</p>
+        <div class="product-footer">
+          <span class="product-price">$15</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-tag">Data Tools</span>
+        <h4>Campus Data Dashboard Template</h4>
+        <p>Google Slides visual dashboard template for presenting assessment data to leadership teams. Plug in your numbers and present.</p>
+        <div class="product-footer">
+          <span class="product-price">$20</span>
+          <a href="#" class="product-btn">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="shop-coming">
+        <p><strong>More products dropping soon.</strong></p>
+        <p>Science Do Now bundles · Social Studies STAAR prep · Micro school unit plans · Homeschool curriculum packs</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms">
+  <div class="section-inner">
+    <p class="section-eyebrow">Find Impact Lab on</p>
+    <h2 class="section-title">Also available on</h2>
+    <p class="section-sub">Shop Impact Lab products across multiple platforms — wherever you prefer to buy.</p>
+    <div class="platform-row">
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Teachers Pay Teachers</a>
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Fiverr</a>
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Upwork</a>
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Etsy</a>
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Ko-fi</a>
+      <a href="#" class="platform-pill"><span class="platform-dot"></span>Gumroad</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to launch something that works?</h2>
+  <p>Custom curriculum, data reports, STAAR prep, and more — built by a practitioner who's done this work for 10+ years.</p>
+  <a href="#contact" class="btn-dark">Let's Work Together</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-eyebrow">Get in touch</p>
+        <h3>Let's Build Something That Works</h3>
+        <p>Whether you need a custom curriculum package, a data report, or just want to ask a question before ordering — I respond within 24 hours.</p>
+        <div class="contact-method">
+          <div class="contact-icon">📧</div>
+          hello@theimpactlab.co
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">📍</div>
+          Austin, Texas (serving clients nationwide)
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">⚡</div>
+          Typical response: within 24 hours
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" placeholder="Maya">
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Rodriguez">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@school.org">
+        </div>
+        <div class="form-group">
+          <label>I'm a...</label>
+          <select>
+            <option value="">Select your role</option>
+            <option>School leader (AP, Principal)</option>
+            <option>Teacher or instructional coach</option>
+            <option>Micro school or pod founder</option>
+            <option>Homeschool parent</option>
+            <option>Ed-tech company or publisher</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What do you need?</label>
+          <select>
+            <option value="">Select a service</option>
+            <option>Differentiated curriculum design</option>
+            <option>Micro school / pod / homeschool curriculum</option>
+            <option>Data analysis & student hotlist</option>
+            <option>STAAR Do Now warm-up sets</option>
+            <option>Family communication letters</option>
+            <option>Instructional coaching & consulting</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell me more</label>
+          <textarea placeholder="Grade level, subject, timeline, anything else I should know..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none; cursor:pointer; font-family:'Barlow',sans-serif; width:100%; text-align:center; padding:15px;">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THE IMPACT LAB</div>
+  <p>Curriculum that launches students forward.</p>
+  <p style="margin-top:4px;">Austin, Texas · Serving educators nationwide</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#shop">Digital Shop</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Fiverr</a></li>
+    <li><a href="#">Teachers Pay Teachers</a></li>
+  </ul>
+  <p style="margin-top:1.5rem; font-size:11px;">© 2025 The Impact Lab · All rights reserved</p>
+</footer>
+
+</body>
+</html>
